@@ -5,7 +5,7 @@ EDP32内置一个命令解释器，通讯协议设置为TERM时，可以通过�
 
 默认串口参数：`波特率115200、8位数据、1位停止、无校验、无流控`。
 
-本文档基于EDP32固件v19.11.20，其余固件版本仅供参考。
+本文档基于EDP32固件v20.3.24，其余固件版本仅供参考。
 
 ## getui
 
@@ -336,17 +336,18 @@ ioset [adj|zero|cali|set] [dat] set Iout param.
 
 ```
 info
- FUNC=0x0241 ECHO=1 TEST=0 PWRON=0 LOCK=0
+ FUNC=0x0201 ECHO=1 TEST=0 PWRON=0 LOCK=0
  DEV=0x0310 BUZ=0 BAUD=3 115200 PROP=1 TERM
- LOG=0x0034 AUTO=0 APPEND=1 UART=1 FILE=1 INT=0
+ LOG=0x0130 AUTO=0 APPEND=0 UART=1 FILE=1 INT=1
  LCD=0x0089 DIR=2 BKLT=8 PAGE=0
- FLAG=0x0100 ADDR=1
+ FLAG=0x0100 ADDR=1 AUTO=60
 ```
 
 子命令介绍如下：
 
 - func、dev、log、lcd为设备内部使用的寄存器，通过面板可以设置，通常无需用户修改。
 - addr为MODBUS地址，通过`info addr [1-247]`命令进行修改，推荐通过面板设置。
+- auto为参数自动保存时间，单位秒，通过`info auto [10-3600]`命令进行修改。
 - baud为波特率寄存器，推荐通过面板设置。
 - bklt为LCD背光亮度寄存器，推荐通过面板设置。
 
@@ -478,22 +479,23 @@ EDP32记录数据时会将数据写入`record.csv`文件，默认为截断模式
 可以带一个延时参数，单位ms，如`reboot 900`延时900ms以后重启。
 
 命令输出如下：
+
 ```
 reboot
  rebooting...
- EDP32 v19.11.20 SN:6D3631363735000141305741
+ EDP32 v20.3.24 SN:6C5D31363735000141305741
  ECHO Studio <echo.xjtu@gmail.com>. All Rights Reserved.
 reboot 900
  rebooting...
- EDP32 v19.11.20 SN:6D3631363735000141305741
+ EDP32 v20.3.24 SN:6C5D31363735000141305741
  ECHO Studio <echo.xjtu@gmail.com>. All Rights Reserved.
-```
 
 ## help
 
 获取在线帮助。
 
 命令输出如下：
+
 ```
 help
  getui -> get U I P R Info.
@@ -521,8 +523,9 @@ help
 获取固件和设备序列号等信息。
 
 命令输出如下：
+
 ```
 version
- EDP32 v19.11.20 SN:6D3631363735000141305741
+ EDP32 v20.3.24 SN:6C5D31363735000141305741
  ECHO Studio <echo.xjtu@gmail.com>. All Rights Reserved.
 ```
