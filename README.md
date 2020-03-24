@@ -2,7 +2,7 @@
 
 ## 资料汇总
 
-- [EDP32用户手册](DOC/EDP32用户手册v19.11.22.pdf)
+- [EDP32用户手册](DOC/EDP32用户手册v20.3.24.pdf)
 - [终端命令行手册](DOC/EDP32_CmdRef.md)
 - [MOSBUS协议手册](DOC/EDP32_ModbusRef.md)
 
